@@ -72,23 +72,47 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	}
 
 	@Override
+	public void run() {
+		requestFocus();//Foca automaticamente na janela do jogo
+		while(true) {
+			tick();
+			render();
+			try {
+					Thread.sleep(1000/60);
+				}
+			catch (InterruptedException e) {
+				e.printStackTrace();
+				
+			 }
+			}
+		}
+
+	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
+		
 		
 	}
+
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			player.right = true;
+		}
 		
+		else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+			player.left = true;
+		}
 	}
+
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			player.right = false;
+		}
+		else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+			player.left = false;
+		}
+	}
 		
 	}
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
-	}
-}
