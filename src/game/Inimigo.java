@@ -18,7 +18,7 @@ public class Inimigo {
 	
 	public void tick() {
 		//Toda a logica do jogo
-		
+		x+=(Game.bola.x -x - 6)*0.4; // Calculo para o inimigo acompanhar a bola
 		
 	}
 	

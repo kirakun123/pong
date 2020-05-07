@@ -18,7 +18,18 @@ public class Player {
 	}
 
 	public void tick() {
-
+		if(right) {
+			x++;
+		}
+		else if(left) {
+			x--;
+		}
+		if(x+width > Game.WIDTH) {
+			x = Game.WIDTH - width;
+		}
+		else if(x < 0) {
+			x = 0;
+		}
 	}
 
 	public static void render(Graphics g) {
