@@ -10,20 +10,26 @@ public class Bola {
 	public int width, height;
 	
 	public double dx,dy;
-	public double speed = 1.3;
+	public double speed = 1.7;
 	
 	public Bola(int x, int y) {
+		/**
+		 * Função Bola() define as dimensões da bola e a posição que ela vai iniciar no angulo
+		 */
 		this.x = x;
 		this.y = y;
 		this.width = 4;
 		this.height = 4;
 		
-		int angle = new Random().nextInt(120-45)+45+1;//Gerar um numero aleatorio entre 120 e 45, se der 0 somar +45
+		int angle = new Random().nextInt(120-45);//Gerar um numero aleatorio entre 120 e 45, se der 0 somar +45
 		dx = Math.acos(Math.toRadians(angle));
 		dy = Math.acos(Math.toRadians(angle));
 	}
 	
 	public void tick() {
+		/**
+		 * Aqui definimos a velocidade da bola e testamos a colisão
+		 */
 		
 		if(x+(dx*speed) + width >= Game.WIDTH) {
 			dx*=-1;
@@ -50,16 +56,16 @@ public class Bola {
 		
 		if(bounds.intersects(boundsPlayer)) {
 			int angle = new Random().nextInt(120-45)+45+1;//Gerar um numero aleatorio entre 120 e 45, se der 0 somar +45
-			dx = Math.acos(Math.toRadians(angle));
-			dy = Math.acos(Math.toRadians(angle));
+			dx = Math.cos(Math.toRadians(angle));
+			dy = Math.sin(Math.toRadians(angle));
 			if(dy > 0) {
 				dy*=-1;
 			}
 		}
 		else if(bounds.intersects(boundsEnemy)) {
 			int angle = new Random().nextInt(120-45)+45+1;//Gerar um numero aleatorio entre 120 e 45, se der 0 somar +45
-			dx = Math.acos(Math.toRadians(angle));
-			dy = Math.acos(Math.toRadians(angle));
+			dx = Math.cos(Math.toRadians(angle));
+			dy = Math.sin(Math.toRadians(angle));
 			if(dy <0) {
 				dy*=-1;
 			}

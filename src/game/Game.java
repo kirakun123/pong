@@ -16,6 +16,9 @@ import javax.swing.JFrame;
  * @version 1
  * Classe principal do jogo pong, contendo parte gráfica do Java utilizando alguns metodos e parametros utilizados nas aulas.
  * 
+ */
+
+/*
  * @param Runnable  
  * 
  * Runnable é um método que deixa o jogo rodando em loop, assim o utilizador poderá continuar jogando ate fechar o jogo.
@@ -24,14 +27,14 @@ import javax.swing.JFrame;
  * 
  * JFrame é uma função do java para abrir uma nova janela no Java.
  * 
- * @PARAM setResizable 
+ * @param setResizable 
  * Este parametro não deixa o utilizador redimensionar a janela.
  * 
  * @param setDefaultCloseOperation
  * 
  * Esta função, deixa o botão padrão do Java para fechar, assim sendo a única maneira de se fechar a aplicação. 
  * E não deixando a aplicação rodando após isso.
- *
+ * 
  */
 public class Game extends Canvas implements Runnable, KeyListener{
 	
@@ -59,6 +62,13 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	public BufferedImage layer = new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_INT_RGB);
 	
 	public Game() {
+		/**
+		 * A função Game() ao iniciar pega as variaveis WIDTH e HEIGHT e calcula com a SCALE, adiciona dentro dessa escala o Player, Inimigo e Bola.
+		 * Utilizando a forma Dimensões * Scale.
+		 * 
+		 * Quanto ao inicio do Game() ainda podemos citar o addKeyListener que dá ao jogador as teclas para movimento e renicio do jogo.
+		 * 
+		 */
 		this.setPreferredSize(new Dimension(WIDTH*SCALE,HEIGHT*SCALE));//Dimensões * Scale
 		this.addKeyListener(this);//Adiciona o metodo KeyListiner ao jogo
 		player = new Player(100,HEIGHT-5);
@@ -67,7 +77,13 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	}
 	
 	public static void main(String[] args) {
-		
+		/**
+		 * Nessa função ao iniciar cria a janela nomeada Pong, definimos que o jogador não pode redimensionar o tamanho da mesma.
+		 * Define que o jogo apenas pode ser fechado da maneira padrão.
+		 * 
+		 * Adicionamos um Canvas e o definimos como visivel.
+		 * E para concluir pedimos para ser criada uma Thread para o game funcionar.
+		 */
 		Game game = new Game();
 		JFrame frame = new JFrame("Pong");
 		frame.setResizable(false); // Utilizador não pode redimensionar a Janela
@@ -87,6 +103,13 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	}
 	
 	public void render() {
+		
+		/**
+		 * Função Render()
+		 * 
+		 * Aqui renderizamos o jogo, criamos os gráficos, colocamos a cor no background e solicitamos mostrar as paletas.
+		 * 
+		 */
 		BufferStrategy bs = this.getBufferStrategy();//Renderiza o jogo
 		if(bs == null) {//Se for null
 			this.createBufferStrategy(3);//BS é definido como 3
@@ -105,6 +128,13 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	
 	@Override
 	public void run() {
+		/**
+		 * Run()
+		 * 
+		 * Ao iniciar o jogo funciona com uma Thread, fazendo o jogo rodar em 1000/60 ou seja, rodar a 60 FPS por segundo.
+		 * E atualizar em tempo real.
+		 * 
+		 */
 		requestFocus();//Foca automaticamente na janela do jogo
 		while(true) {
 			tick();
@@ -127,6 +157,12 @@ public class Game extends Canvas implements Runnable, KeyListener{
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+		
+		/**
+		 * keyPressed é o método do java para verificar se o utilizador está pressionando as teclas definidas no jogo.
+		 * Caso o player esteja utilizando RIGHT ou LEFT a palheta se move.
+		 * 
+		 */
 		// TODO Auto-generated method stub
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			player.right = true;
@@ -139,6 +175,11 @@ public class Game extends Canvas implements Runnable, KeyListener{
 
 	@Override
 	public void keyReleased(KeyEvent e) {
+		/**
+		 * keyReleased é o método do java para verificar se o utilizador soltou as teclas definidas no jogo.
+		 * Caso o player soltar as teclas RIGHT ou LEFT a palheta deixa de se mover.
+		 * 
+		 */
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			player.right = false;
 		}

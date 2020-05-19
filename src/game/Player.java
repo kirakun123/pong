@@ -11,6 +11,10 @@ public class Player {
 	public int width, height;
 
 	public Player(int x, int y) {
+		/**
+		 * O metodo player cria a posição inicial do jogador e define o tamanho da palheta utilizada por ele, valores fixos
+		 * 
+		 */
 		this.x = x;
 		this.y = y;
 		this.width = 40;
@@ -18,6 +22,10 @@ public class Player {
 	}
 
 	public void tick() {
+		/**
+		 * Na função tick, pegamos a posição do jogador e diminuimos com a posição da tela.
+		 */
+		
 		if(right) {
 			x++;
 		}
@@ -33,6 +41,9 @@ public class Player {
 	}
 
 	public static void render(Graphics g) {
+		/**
+		 * Na função render definimos a cor do jogador como azul e a posição onde ele vai iniciar usando fillRect
+		 */
 		g.setColor(Color.blue);// Define a cor do jogador como azul
 		g.fillRect(x, y, 40, 10);// Define a posição na tela onde o jogador vai iniciar.
 	}
