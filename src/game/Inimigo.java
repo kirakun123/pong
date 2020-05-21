@@ -24,10 +24,15 @@ public class Inimigo {
 	public void tick() {
 		/**
 		 * Função Tick() do Inimigo faz o inimigo acompanhar a bola
+		 * 
+		 * Modos de jogo são definidos pela velocidade do Inimigo.
+		 * Velocidade 0.03 -> Easy
+		 * Velocidade 0.05 -> Medio
+		 * Velocidade 0.07 -> Hard
+		 * 
 		 */
 		//Toda a logica do jogo
-		x+=(Game.bola.x -x - 6)*0.07; // Calculo para o inimigo acompanhar a bola
-		
+		x+=(Game.bola.x-x-6)*0.03; // Calculo para o inimigo acompanhar a bola
 	}
 	
 	public void render(Graphics g) {

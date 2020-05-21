@@ -9,6 +9,7 @@ public class Player {
 	public static int x;
 	public static int y;
 	public int width, height;
+	
 
 	public Player(int x, int y) {
 		/**
