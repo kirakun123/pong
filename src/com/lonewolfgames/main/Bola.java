@@ -1,14 +1,18 @@
-package game;
+package com.lonewolfgames.main;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.Random;
 
-import api.Score;
-import game.Game;
+import com.lonewolfgames.api.Score;
+import com.lonewolfgames.main.Game;
 
 public class Bola {
+	/**
+	 * @author Igor Silva 
+	 * @version 5
+	 */
 	public double x, y;
 	public int width, height;
 

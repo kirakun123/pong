@@ -1,4 +1,4 @@
-package game;
+package com.lonewolfgames.main;
 
 import java.awt.Canvas;
 import java.awt.Color;
@@ -11,12 +11,13 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 
-import api.Score;
+import com.lonewolfgames.api.Score;
+import com.lonewolfgames.api.UI;
 
 /***
  * 
  * @author Igor
- * @version 1 Classe principal do jogo pong, contendo parte gráfica do Java
+ * @version 2 Classe principal do jogo pong, contendo parte gráfica do Java
  *          utilizando alguns metodos e parametros utilizados nas aulas.
  * 
  */
@@ -65,11 +66,13 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	public static int SCALE = 3;
 	public static Player player;
 	public static Inimigo inimigo;
+	public UI ui;
 	public static Bola bola; // Bola precisou ficar como static para poder ser acessada atraves da classe
 								// Inimigo para definir taticas e velocidade da bola.
 
 	public BufferedImage layer = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 	Score score = new Score();
+	
 
 	public Game() {
 		/**
@@ -86,10 +89,10 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		player = new Player(100, HEIGHT - 5);
 		inimigo = new Inimigo(100, 0);
 		bola = new Bola(100, HEIGHT / 2 - 1);
-
+		ui = new UI();
 		score = new Score(score.getPlayerscore(), score.getInimigoscore());
-		System.out.println("Score"+ " Inimigo: " + Score.getInimigoscore() + " - "+ "Jogador: " + Score.getPlayerscore());
-		//score.drawscore();
+		System.out.println("Score\n"+ "Inimigo: " + Score.getInimigoscore() + " - "+ "Jogador: " + Score.getPlayerscore());
+		
 	}
 
 	public static void main(String[] args) {
@@ -139,15 +142,19 @@ public class Game extends Canvas implements Runnable, KeyListener {
 			this.createBufferStrategy(3);// BS é definido como 3
 			return;
 		}
+		
 		Graphics g = layer.getGraphics();
 		g.setColor(Color.black);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		player.render(g);
 		inimigo.render(g);
 		bola.render(g);
+		ui.render(g); //DESENHAR SCORE
 		g = bs.getDrawGraphics();
+		
 		g.drawImage(layer, 0, 0, WIDTH * SCALE, HEIGHT * SCALE, null);
 		bs.show();// Mostrar jogador
+		
 
 	}
 

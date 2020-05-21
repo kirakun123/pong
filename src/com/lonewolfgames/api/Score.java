@@ -1,13 +1,24 @@
-package api;
+package com.lonewolfgames.api;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 
-import game.Bola;
-import game.Game;
+import com.lonewolfgames.main.Bola;
+import com.lonewolfgames.main.Game;
 
 public class Score extends Bola {
-	String scoreText = "Score";
+	
+	/**
+	 * @author Igor Silva
+	 * @version 1
+	 * 
+	 * Classe Score possui apenas um construtor determinando o score do jogador e do inimigo.
+	 * Possui o método get e set dos mesmos, assim facilitando o acesso das váriaveis.
+	 * 
+	 * A classe Score possui também um método reset() que reinicia todos os pontos dos jogadores a 0.
+	 */
+	String scoreText = "Score\n";
 	static int playerscore = 0;
 	static int inimigoscore = 0;
 	public int width, height;
@@ -37,15 +48,6 @@ public class Score extends Bola {
 
 	public static void setInimigoscore(int inimigoscores) {
 		inimigoscore += inimigoscores;
-	}
-
-	public void drawscore(Graphics2D g) {
-
-		g.setColor(Color.white);
-		g.fillRect(0, 0, 0, 0);
-		g.drawString(String.valueOf(Bola.playerscore), Game.WIDTH / 2 - 45, 50);
-		g.drawString(String.valueOf(Bola.inimigoscore), Game.WIDTH / 2 + 45, 50);
-
 	}
 
 	public static void reset() {

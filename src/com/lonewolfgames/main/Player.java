@@ -1,9 +1,15 @@
-package game;
+package com.lonewolfgames.main;
 
 import java.awt.Color;
 import java.awt.Graphics;
 
 public class Player {
+	/**
+	 * @author Igor Silva
+	 * @version 1
+	 * 
+	 * Classe do jogador, onde é definida as principais partes da palheta, função tick() e render()
+	 */
 
 	public boolean right, left;
 	public static int x;

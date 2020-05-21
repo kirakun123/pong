@@ -1,11 +1,19 @@
-package game;
+package com.lonewolfgames.main;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
 public class Inimigo {
-	
+	/**
+	 * @author Igor Silva
+	 * @version 1
+	 * 
+	 * Classe inimigo, possui apenas @param width e @param height
+	 * Classe para determinar o tamanho da paleta da máquina.
+	 * 
+	 *  Possui a classe render() e a função tick()
+	 */
 	public double x,y;
 	public int width, height;
 	
