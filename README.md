@@ -1,16 +1,10 @@
 # pong
 
-Atualização 1 
+Este projecto consiste em um jogo de pong simples, programado em java com API externa do Score.
+Utilizando Graphics do proprio java, utilizando ainda as ferramentas do java, o colisor foi fundamental para o projecto.
 
-Implementado função Tick, Render e KeyEvent
-
-Atualização 2
-
-Implementação da Classe Inimigo, Player e feito uma parte de cada
-
-Atualização 3
-
-Criado a Classe Bola, implementação das classes Inimigo, Game, Player. Atualizado a velocidade da bola e a inteligencia da máquina.
+A documentação foi bem detalhada em todos os ficheiros e classes.
+Inserido dificuldade na inteligência artificial do jogo, sendo possivel alterar-la na classe Inimigo.
 
 
 Grupo: Igor Silva
