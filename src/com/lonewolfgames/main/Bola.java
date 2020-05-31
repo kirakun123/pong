@@ -16,8 +16,9 @@ public class Bola {
 	public double x, y;
 	public int width, height;
 
-	public double dx, dy;
+	public static double dx, dy;
 	public double speed = 1.3;
+	public static int angle= new Random().nextInt(120 - 45) + 45+1;;//Criada pro teste
 
 	public static int playerscore;
 	public static int inimigoscore;
@@ -25,7 +26,14 @@ public class Bola {
 	public Bola() {
 
 	}
-
+	
+	public int angulo(int anguloteste)
+	{
+		//int angle = new Random().nextInt(120 - 45) + 45+1;// Gerar um numero aleatorio entre 120 e 45, se der 0 somar +45+1
+		dx = Math.cos(Math.toRadians(angle));
+		dy = Math.sin(Math.toRadians(angle));
+		return anguloteste;
+	}
 	public Bola(int x, int y) {
 		/**
 		 * Função Bola() define as dimensões da bola e a posição que ela vai iniciar no
@@ -35,10 +43,11 @@ public class Bola {
 		this.y = y;
 		this.width = 4;
 		this.height = 4;
-
-		int angle = new Random().nextInt(120 - 45) + 45+1;// Gerar um numero aleatorio entre 120 e 45, se der 0 somar +45+1
+		angulo(angle);
+		/*int angle = new Random().nextInt(120 - 45) + 45+1;// Gerar um numero aleatorio entre 120 e 45, se der 0 somar +45+1
 		dx = Math.cos(Math.toRadians(angle));
-		dy = Math.sin(Math.toRadians(angle));
+		dy = Math.sin(Math.toRadians(angle));*/
+		
 	}
 
 	public void tick() {
@@ -55,6 +64,9 @@ public class Bola {
 			// Ponto do Inimigo
 			Score.setInimigoscore(1);
 			System.out.println("Ponto para a máquina");
+			if(Score.getInimigoscore() == 5) {
+				Game.gameState = "GAMEOVER";
+			}
 			new Game();
 			return;
 		} else if (y < 0) {

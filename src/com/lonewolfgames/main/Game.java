@@ -3,7 +3,9 @@ package com.lonewolfgames.main;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
@@ -66,13 +68,16 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	public static int SCALE = 3;
 	public static Player player;
 	public static Inimigo inimigo;
+	public static String gameState = "GAMEOVER";
+	private boolean showMessageGameOver = true;
+	private int framesGameOver = 0;
+	private boolean restartGame = false;
 	public UI ui;
 	public static Bola bola; // Bola precisou ficar como static para poder ser acessada atraves da classe
 								// Inimigo para definir taticas e velocidade da bola.
 
 	public BufferedImage layer = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 	Score score = new Score();
-	
 
 	public Game() {
 		/**
@@ -91,8 +96,9 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		bola = new Bola(100, HEIGHT / 2 - 1);
 		ui = new UI();
 		score = new Score(score.getPlayerscore(), score.getInimigoscore());
-		System.out.println("Score\n"+ "Inimigo: " + Score.getInimigoscore() + " - "+ "Jogador: " + Score.getPlayerscore());
-		
+		System.out.println(
+				"Score\n" + "Inimigo: " + Score.getInimigoscore() + " - " + "Jogador: " + Score.getPlayerscore());
+
 	}
 
 	public static void main(String[] args) {
@@ -123,9 +129,27 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	 * }
 	 */
 	public void tick() {
-		player.tick();
-		inimigo.tick();
-		bola.tick();
+		if (gameState == "NORMAL") {
+			this.restartGame=false;
+			player.tick();
+			inimigo.tick();
+			bola.tick();
+		} else if (gameState == "GAMEOVER") {
+			this.framesGameOver++;
+			if (this.framesGameOver == 15) {
+				this.framesGameOver = 0;
+				if (this.showMessageGameOver) {
+					this.showMessageGameOver = false;
+				} else {
+					this.showMessageGameOver = true;
+				}
+			}
+		}
+		if(restartGame) {
+			gameState = "NORMAL";
+			this.restartGame=false;
+			new Game();
+		}
 	}
 
 	public void render() {
@@ -142,19 +166,28 @@ public class Game extends Canvas implements Runnable, KeyListener {
 			this.createBufferStrategy(3);// BS é definido como 3
 			return;
 		}
-		
+
 		Graphics g = layer.getGraphics();
 		g.setColor(Color.black);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		player.render(g);
 		inimigo.render(g);
 		bola.render(g);
-		ui.render(g); //DESENHAR SCORE
+		ui.render(g); // DESENHAR SCORE
 		g = bs.getDrawGraphics();
-		
+
 		g.drawImage(layer, 0, 0, WIDTH * SCALE, HEIGHT * SCALE, null);
+		if (gameState == "GAMEOVER") {
+			Graphics2D g2 = (Graphics2D) g;
+			g2.setColor(new Color(0, 0, 0, 100));
+			g2.fillRect(0, 0, WIDTH * SCALE, HEIGHT * SCALE);
+			g.setFont(new Font("arial", Font.BOLD, 36));
+			g.setColor(Color.white);
+			g.drawString("GAME OVER", (WIDTH * SCALE) / 2 - 110, (HEIGHT * SCALE) / 2);
+			g.setFont(new Font("arial", Font.BOLD, 24));
+			g.drawString("Pressione Enter para reiniciar", (WIDTH * SCALE) / 2 - 170, (HEIGHT * SCALE + 80) / 2);
+		}
 		bs.show();// Mostrar jogador
-		
 
 	}
 
@@ -200,6 +233,10 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		} else if (e.getKeyCode() == KeyEvent.VK_R) {
 			new Game();
 			Score.reset();
+		}
+		
+		else if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+			this.restartGame = true;
 		}
 	}
 

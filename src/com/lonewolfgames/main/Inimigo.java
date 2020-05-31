@@ -40,7 +40,7 @@ public class Inimigo {
 		 * 
 		 */
 		//Toda a logica do jogo
-		x+=(Game.bola.x-x-6)*0.03; // Calculo para o inimigo acompanhar a bola
+		x+=(Game.bola.x-x-6)*0.07; // Calculo para o inimigo acompanhar a bola
 	}
 	
 	public void render(Graphics g) {
