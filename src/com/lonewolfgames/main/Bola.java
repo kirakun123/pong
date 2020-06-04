@@ -24,7 +24,7 @@ public class Bola {
 	public static int inimigoscore;
 
 	public Bola() {
-
+		super();
 	}
 	
 	public int angulo(int anguloteste)
@@ -32,6 +32,7 @@ public class Bola {
 		//int angle = new Random().nextInt(120 - 45) + 45+1;// Gerar um numero aleatorio entre 120 e 45, se der 0 somar +45+1
 		dx = Math.cos(Math.toRadians(angle));
 		dy = Math.sin(Math.toRadians(angle));
+		//anguloteste = angle;
 		return anguloteste;
 	}
 	public Bola(int x, int y) {
@@ -64,7 +65,7 @@ public class Bola {
 			// Ponto do Inimigo
 			Score.setInimigoscore(1);
 			System.out.println("Ponto para a máquina");
-			if(Score.getInimigoscore() == 5) {
+			if(Score.getInimigoscore() == 10) {
 				Game.gameState = "GAMEOVER";
 			}
 			new Game();
@@ -74,6 +75,9 @@ public class Bola {
 			// Ponto do Jogador
 			System.out.println("Ponto para o Jogador");
 			Score.setPlayerscore(1);
+			if(Score.getPlayerscore() == 10) {
+				Game.gameState = "GAMEOVER";
+			}
 			new Game();
 			return;
 		}

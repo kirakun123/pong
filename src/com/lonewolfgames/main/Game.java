@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 
 import com.lonewolfgames.api.Score;
 import com.lonewolfgames.api.UI;
+import com.lonewolfgames.menu.Menu;
 
 /***
  * 
@@ -68,11 +69,12 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	public static int SCALE = 3;
 	public static Player player;
 	public static Inimigo inimigo;
-	public static String gameState = "GAMEOVER";
+	public static String gameState = "MENU";
 	private boolean showMessageGameOver = true;
 	private int framesGameOver = 0;
 	private boolean restartGame = false;
 	public UI ui;
+	public Menu menu;
 	public static Bola bola; // Bola precisou ficar como static para poder ser acessada atraves da classe
 								// Inimigo para definir taticas e velocidade da bola.
 
@@ -95,6 +97,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		inimigo = new Inimigo(100, 0);
 		bola = new Bola(100, HEIGHT / 2 - 1);
 		ui = new UI();
+		menu = new Menu();
 		score = new Score(score.getPlayerscore(), score.getInimigoscore());
 		System.out.println(
 				"Score\n" + "Inimigo: " + Score.getInimigoscore() + " - " + "Jogador: " + Score.getPlayerscore());
@@ -150,6 +153,9 @@ public class Game extends Canvas implements Runnable, KeyListener {
 			this.restartGame=false;
 			new Game();
 		}
+		else if (gameState == "MENU") {
+			menu.tick();
+		}
 	}
 
 	public void render() {
@@ -186,6 +192,9 @@ public class Game extends Canvas implements Runnable, KeyListener {
 			g.drawString("GAME OVER", (WIDTH * SCALE) / 2 - 110, (HEIGHT * SCALE) / 2);
 			g.setFont(new Font("arial", Font.BOLD, 24));
 			g.drawString("Pressione Enter para reiniciar", (WIDTH * SCALE) / 2 - 170, (HEIGHT * SCALE + 80) / 2);
+			Score.reset();
+		}else if(gameState == "MENU") {
+			menu.render(g);
 		}
 		bs.show();// Mostrar jogador
 
@@ -226,8 +235,10 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		// TODO Auto-generated method stub
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			player.right = true;
+			if(gameState == "MENU") {
+				menu.right = true;
+			}
 		}
-
 		else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			player.left = true;
 		} else if (e.getKeyCode() == KeyEvent.VK_R) {
@@ -237,6 +248,23 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		
 		else if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			this.restartGame = true;
+			if(gameState == "MENU") {
+				menu.enter = true;
+			}
+			if(gameState == "GAMEOVER") {
+				gameState = "MENU";
+				new Game();
+			}
+		}
+		else if (e.getKeyCode() == KeyEvent.VK_UP) {
+			if(gameState == "MENU") {
+				menu.up = true;
+			}
+		}
+		else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			if(gameState == "MENU") {
+				menu.down = true;
+			}
 		}
 	}
 

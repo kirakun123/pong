@@ -1,6 +1,6 @@
 package com.lonewolfgames.main.Test;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.util.Random;
 
@@ -27,7 +27,7 @@ public class BolaTeste {
     void test() 
     {
         Bola B1 = new Bola();
-        int angle = B1.angulo(0);
+        int angle = B1.angulo(120);
         assertTrue(angle > 45);
     }
 
@@ -35,11 +35,11 @@ public class BolaTeste {
     @DisplayName("Testar se o Angulo e maior que permitido")
     void BolaTeste() {
         Bola B1 = new Bola();
-        int angle = B1.angulo(0);
+        int angle = B1.angulo(120);
         assertTrue(angle < 120);
     }
 
-        @Test
+    @Test
     @DisplayName("Testar se o Angulo E menor ou maior que permitido x100")
     void test1() {
         Bola B1 = new Bola();
@@ -47,7 +47,7 @@ public class BolaTeste {
         int menor = 0;
         int maior = 0;
         for (int i = 0; i < 101; i++) {
-            int angle = B1.angulo(0);
+            int angle = B1.angulo(120);
             if (angle <40){
              menor++;
             }else if(angle >120){
