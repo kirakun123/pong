@@ -1,30 +1,18 @@
 package com.lonewolfgames.main.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.Random;
-
-import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
-import com.lonewolfgames.api.Score;
 import com.lonewolfgames.main.Bola;
-import com.lonewolfgames.main.Game;
 
+class BolaTeste2 {
 
-public class BolaTeste {
-    // Primeiro teste é verificar se a bola é criada dentro do angulo certo e não
-    // começa nunca em zero
-    @BeforeEach
-    void setUp() throws Exception {
-
-
-    }
-
-    @Test
+	@Test
     @DisplayName("Testar se o Angulo E menor que permitido")
-    void test() 
+    public void test() 
     {
         Bola B1 = new Bola();
         int angle = B1.angulo(120);
@@ -33,7 +21,7 @@ public class BolaTeste {
 
     @Test
     @DisplayName("Testar se o Angulo e maior que permitido")
-    void BolaTeste() {
+    public void BolaTeste() {
         Bola B1 = new Bola();
         int angle = B1.angulo(120);
         assertTrue(angle < 120);
@@ -41,7 +29,7 @@ public class BolaTeste {
 
     @Test
     @DisplayName("Testar se o Angulo E menor ou maior que permitido x100")
-    void test1() {
+    public void test1() {
         Bola B1 = new Bola();
         boolean passed = false;
         int menor = 0;
@@ -59,4 +47,5 @@ public class BolaTeste {
         }
         assertTrue(passed==true);
     }
+
 }

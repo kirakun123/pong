@@ -11,13 +11,10 @@ public class Menu {
 	/***
 	 * Sistema de Menu
 	 * @author Igor
-	 * @date 01/06/2020
+	 * @since 01/06/2020
 	 * 
 	 * O Sistema de Navegação do menu foi criado para iniciar o jogo e sair.
 	 * Uma seta indica a opção que o jogador está e pressionando a tecla ENTER. a opção é selecionada
-	 * @param VK_ENTER
-	 * 
-	 * Entra na opção.
 	 **/
 	public String[] opcoes = {"Novo Jogo", "Sair"};
 	public int currentOption =0;
@@ -90,9 +87,6 @@ public class Menu {
 			}
 			else if(opcoes[currentOption] == "Sair") {
 				System.exit(1);
-			}
-			else {
-				
 			}
 		}
 	}
