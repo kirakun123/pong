@@ -9,6 +9,13 @@ import org.junit.jupiter.api.Test;
 import com.lonewolfgames.main.Bola;
 
 class BolaTeste2 {
+	
+	/**
+	 * @author Igor Silva
+	 * Classe Realizada para testes, aqui verificamos se os angulos estão dentro do limite.
+	 * 
+	 * 
+	 */
 
 	@Test
     @DisplayName("Testar se o Angulo E menor que permitido")

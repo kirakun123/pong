@@ -12,6 +12,10 @@ public class Bola {
 	/**
 	 * @author Igor Silva 
 	 * @version 5
+	 * 
+	 * A Classe bola é uma das mais importantes, pois, aqui testamos colisão, definimos o angulo que ela inicia e o angulo que ela volta ao 
+	 * bater nas palhetas.
+	 * 
 	 */
 	public double x, y;
 	public int width, height;

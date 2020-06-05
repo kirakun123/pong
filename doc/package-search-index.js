@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"com.lonewolfgames.menu"}]
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"com.lonewolfgames.api"},{"l":"com.lonewolfgames.main"},{"l":"com.lonewolfgames.main.Test"},{"l":"com.lonewolfgames.menu"}]
