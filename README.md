@@ -7,5 +7,7 @@ A documentação foi bem detalhada em todos os ficheiros e classes.
 Inserido dificuldade na inteligência artificial do jogo, sendo possivel alterar-la na classe Inimigo.
 
 
+Github Pages: kirakun123.github.io
+
 Grupo: Igor Silva
 Turma: ESGTS/TESP-SI
